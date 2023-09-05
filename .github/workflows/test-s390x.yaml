@@ -19,6 +19,11 @@ jobs:
             uname -a
             echo ::set-output name=uname::$(uname -a)
 
+      - name: Setup Go ${{ matrix.go }}
+        uses: actions/setup-go@v3
+        with:
+          go-version: "1.20"
+
       - name: Get the output
         # Echo the `uname` output parameter from the `runcmd` step
         run:  go test -trimpath -race -tags=purego ./...
